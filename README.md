@@ -8,7 +8,7 @@ This homework assignment has you implementing and using two functions as prescri
 
 Suppose you want to deposit a certain amount of money into a savings account and then leave it alone to draw interest for the next 10 years. At the end of the 10 years you would like to have $10,000 in the account. How much do you need to deposit today to make that happen? To find out you can use the following formula, which is known as the _present value formula_:
 
-![pvf.png]
+![present value formula](pvf.png)
 
 The terms in the formula are as follows:
 
@@ -23,7 +23,7 @@ Write a program with a function named `presentValue` that performs this calculat
 
 Suppose you have a certain amount of money in a savings account that earns compound monthly interest, and you want to calculate the amount that you will have after a specific number of months. The formula, which is known as the _future value formula_, is:
 
-![fvf.png]
+![future value formula](fvf.png)
 
 The variables in the formula are as follows:
 
