@@ -4,8 +4,7 @@
  *
  * @brief Entry point for the functions driver of Homework 5.
  * @file main.cpp
- * @authors Jim Daehn <jdaehn@missouristate.edu>
- *          TODO: Replace this line with your name using the above format.
+ * @authors Alyssa Slayton <ajs41@missouristate.edu>
  */
 
 #include <cstdlib>
