@@ -4,8 +4,7 @@
  *
  * @brief Header file containing the implementation of functions used in Homework 5.
  * @file functions.h
- * @authors Jim Daehn <jdaehn@missouristate.edu>
- *          TODO: Replace this line with your name using the above format.
+ * @authors Alyssa Slayton <ajs41@missouristate.edu>
  */
 
 #ifndef HW05_FUNCTIONS_H
@@ -18,8 +17,10 @@
 
 #define PRESENT_VALUE_DEFINED false
 /**
- * TODO: Implement the presentValue function below the following Doxygen comments using the README and the Doxygen
- * comments as your prescription. Once you've implemented this function as prescribed, change the PRESENT_VALUE_DEFINED
+ * TODO: Implement the presentValue function below the following Doxygen
+ * comments using the README and the Doxygen
+ * comments as your prescription. Once you've implemented this function
+ * as prescribed, change the PRESENT_VALUE_DEFINED
  * macro to true and erase this entire multi-line comment.
  */
 
@@ -30,13 +31,16 @@
  * @param F The future value that you want in the account.
  * @param r The annual interest rate (expressed in decimal form, such as 0.042).
  * @param n The number of years that you plan to let the money sit in the account.
- * @return The present value, or the amount that you need to deposit today, is returned.
+ * @return The present value, or the amount that you need to deposit today,
+ * is returned.
  */
 
 #define FUTURE_VALUE_DEFINED false
 /**
- * TODO: Implement the futureValue function below the following Doxygen comments using the README and the Doxygen
- * comments as your prescription. Once you've implemented this function as prescribed, change the FUTURE_VALUE_DEFINED
+ * TODO: Implement the futureValue function below the following Doxygen comments
+ * using the README and the Doxygen
+ * comments as your prescription. Once you've implemented this function as
+ * prescribed, change the FUTURE_VALUE_DEFINED
  * macro to true and erase this entire multi-line comment.
  */
 
@@ -46,7 +50,8 @@
  * @param P The present value of the account.
  * @param i The monthly interest rate.
  * @param t The number of months.
- * @return The future value of the account after the specified time period, is returned.
+ * @return The future value of the account after the specified time period, is
+ * returned.
  */
 
 
