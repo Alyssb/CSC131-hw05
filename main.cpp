@@ -16,13 +16,16 @@
  * TODO: Create function prototypes for any functions you'll implement below
  * main that you'll call from main.
  */
-enum class MainMenuItem{PRESENT_OPTION = 1, FUTURE_OPTION = 2, QUIT = 9};
+enum class MainMenuItem{PRESENT_OPTION = 1, FUTURE_OPTION = 2, QUIT = 3};
 enum class PresentMenuItem{FUTURE_VALUE = 1, INTEREST_RATE = 2, NUMBER_YEARS = 3,
-    CALCULATE_VALUE = 4, RETURN = 5, QUIT = 9};
+    CALCULATE_VALUE = 4, RETURN = 5, QUIT = 6};
 enum class FutureMenuItem{PRESENT_VALUE = 1, INTEREST_RATE = 2, NUMBER_YEARS = 3,
-    CALCULATE_VALUE = 4, RETURN = 5, QUIT = 9};
+    CALCULATE_VALUE = 4, RETURN = 5, QUIT = 6};
 
-
+MainMenuItem displayMainMenu();
+void displayCurrentSubmenu();
+void displayFutureSubmenu();
+void displayQuitSubmenu();
 
 /**
  * The entry point for this application.
@@ -30,7 +33,11 @@ enum class FutureMenuItem{PRESENT_VALUE = 1, INTEREST_RATE = 2, NUMBER_YEARS = 3
  */
 int main()
 {
+    MainMenuItem selectedOption;
 
+    do {
+        selectedOption = displayMainMenu();
+    } while (selectedOption !=MainMenuItem::QUIT);
     /**
      * TODO: Implement a menu driven program.
      *
@@ -65,6 +72,32 @@ int main()
      * of a modular approach.
      */
     return EXIT_SUCCESS;
+}
+
+MainMenuItem displayMainMenu(){
+    std::cout << "1. Select this option to experiment with the present value function\n";
+    std::cout << "2. Select this option to experiment with the future value function\n";
+    std::cout << "3. select this option to end this program.\n\n";
+
+    unsigned short selection;
+    std::cin >> selection;
+
+    switch (selection) {
+        case static_cast<unsigned short>(MainMenuItem::PRESENT_OPTION):
+            displayCurrentSubmenu();
+            break;
+        case static_cast<unsigned short>(MainMenuItem::FUTURE_OPTION):
+            displayFutureSubmenu();
+            break;
+        case static_cast<unsigned short>(MainMenuItem::QUIT):
+            displayQuitSubmenu();
+            break;
+    }
+    return static_cast <MainMenuItem>(selection);
+}
+
+void displayQuitSubmenu() {
+
 }
 
 presentValue::presentValue(double future, double rate, double years) {
