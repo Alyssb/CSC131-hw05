@@ -9,6 +9,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <cmath>
 #include "functions.h"
 
 /**
@@ -20,6 +21,8 @@ enum class PresentMenuItem{FUTURE_VALUE = 1, INTEREST_RATE = 2, NUMBER_YEARS = 3
     CALCULATE_VALUE = 4, RETURN = 5, QUIT = 9};
 enum class FutureMenuItem{PRESENT_VALUE = 1, INTEREST_RATE = 2, NUMBER_YEARS = 3,
     CALCULATE_VALUE = 4, RETURN = 5, QUIT = 9};
+
+
 
 /**
  * The entry point for this application.
@@ -62,6 +65,34 @@ int main()
      * of a modular approach.
      */
     return EXIT_SUCCESS;
+}
+
+presentValue::presentValue(double future, double rate, double years) {
+    setFunction(future, rate, years);
+}
+
+void presentValue::setFunction(const double &future, const double &rate, const double &years)
+{
+    F = future;
+    r = rate;
+    n = years;
+}
+
+double presentValue::P() const
+{
+    return F /(pow((1+r),n));
+}
+
+void futureValue::setFunction(const double &current, const double &rate, const double &months)
+{
+    P = current;
+    i = rate;
+    t = months;
+}
+
+double futureValue::P() const
+{
+    return P * pow(1+i,t);
 }
 
 /**

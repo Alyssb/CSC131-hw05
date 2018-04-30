@@ -15,7 +15,7 @@
  * done.
  */
 
-#define PRESENT_VALUE_DEFINED false
+#define PRESENT_VALUE_DEFINED true
 /**
  * TODO: Implement the presentValue function below the following Doxygen
  * comments using the README and the Doxygen
@@ -34,6 +34,17 @@
  * @return The present value, or the amount that you need to deposit today,
  * is returned.
  */
+ class presentValue{
+ public:
+     double F;
+     double r;
+     double n;
+     explicit presentValue(double future = 100, double rate = .01, double years = 10);
+     void setFunction(const double &future, const double &rate, const double &years);
+
+ private:
+    double P;
+ };
 
 #define FUTURE_VALUE_DEFINED false
 /**
@@ -53,6 +64,16 @@
  * @return The future value of the account after the specified time period, is
  * returned.
  */
+class futureValue{
+public:
+    double P;
+    double i;
+    double t;
+    explicit futureValue(double current = 10, double rate = .01, double months = 10);
+    void setFunction(const double &current, const double &rate, const double &months);
 
+private:
+    double F;
+};
 
 #endif // HW05_FUNCTIONS_H
