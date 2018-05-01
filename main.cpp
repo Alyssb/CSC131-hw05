@@ -116,6 +116,10 @@ double presentValue::P() const
     return F /(pow((1+r),n));
 }
 
+futureValue::futureValue(double current, double rate, double months) {
+    setFunction(current, rate, months);
+}
+
 void futureValue::setFunction(const double &current, const double &rate, const double &months)
 {
     P = current;

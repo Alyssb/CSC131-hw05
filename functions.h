@@ -36,24 +36,17 @@
  */
  class presentValue{
  public:
-     double F;
-     double r;
-     double n;
+     double P() const;
      explicit presentValue(double future = 100, double rate = .01, double years = 10);
      void setFunction(const double &future, const double &rate, const double &years);
 
  private:
-    double P;
+    double F;
+    double r;
+    double n;
  };
 
-#define FUTURE_VALUE_DEFINED false
-/**
- * TODO: Implement the futureValue function below the following Doxygen comments
- * using the README and the Doxygen
- * comments as your prescription. Once you've implemented this function as
- * prescribed, change the FUTURE_VALUE_DEFINED
- * macro to true and erase this entire multi-line comment.
- */
+#define FUTURE_VALUE_DEFINED true
 
 /**
  * An implementation of the future value function.
@@ -66,14 +59,15 @@
  */
 class futureValue{
 public:
-    double P;
-    double i;
-    double t;
+    double F() const;
     explicit futureValue(double current = 10, double rate = .01, double months = 10);
     void setFunction(const double &current, const double &rate, const double &months);
 
 private:
-    double F;
+
+    double P;
+    double i;
+    double t;
 };
 
 #endif // HW05_FUNCTIONS_H
