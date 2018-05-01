@@ -21,6 +21,7 @@ enum class PresentMenuItem{FUTURE_VALUE = 1, INTEREST_RATE = 2, NUMBER_YEARS = 3
     CALCULATE_VALUE = 4, RETURN = 5, QUIT = 6};
 enum class FutureMenuItem{PRESENT_VALUE = 1, INTEREST_RATE = 2, NUMBER_YEARS = 3,
     CALCULATE_VALUE = 4, RETURN = 5, QUIT = 6};
+enum class QuitMenuItem{STAY_OPTION = 1, QUIT = 2};
 
 MainMenuItem displayMainMenu();
 void displayCurrentSubmenu();
@@ -97,7 +98,20 @@ MainMenuItem displayMainMenu(){
 }
 
 void displayQuitSubmenu() {
+    std::cout << "Are you sure you want to quit?\n";
+    std::cout << "1. yes ";
+    std::cout << "2. no ";
 
+    unsigned short quitSelection;
+    std::cin >> quitSelection;
+
+    switch (quitSelection) {
+        case static_cast<unsigned short> (QuitMenuItem::STAY_OPTION):
+            displayMainMenu();
+            break;
+        case static_cast<unsigned short>(QuitMenuItem::QUIT):
+            break;
+    }
 }
 
 presentValue::presentValue(double future, double rate, double years) {
@@ -127,7 +141,7 @@ void futureValue::setFunction(const double &current, const double &rate, const d
     t = months;
 }
 
-double futureValue::P() const
+double futureValue::F() const
 {
     return P * pow(1+i,t);
 }
