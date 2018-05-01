@@ -9,20 +9,7 @@
 
 #ifndef HW05_FUNCTIONS_H
 #define HW05_FUNCTIONS_H
-
-/**
- * TODO: Include any libraries needed to implement these functions and remove this entire multi-line comment when you're
- * done.
- */
-
 #define PRESENT_VALUE_DEFINED true
-/**
- * TODO: Implement the presentValue function below the following Doxygen
- * comments using the README and the Doxygen
- * comments as your prescription. Once you've implemented this function
- * as prescribed, change the PRESENT_VALUE_DEFINED
- * macro to true and erase this entire multi-line comment.
- */
 
 /**
  * An implementation of the present value function.
@@ -38,7 +25,9 @@
  public:
      double P() const;
      explicit presentValue(double future = 100, double rate = .01, double years = 10);
-     void setFunction(const double &future, const double &rate, const double &years);
+     void setFuture(const double &future);
+     void setRate(const double &rate);
+     void setYears(const double & years);
 
  private:
     double F;
@@ -61,7 +50,9 @@ class futureValue{
 public:
     double F() const;
     explicit futureValue(double current = 10, double rate = .01, double months = 10);
-    void setFunction(const double &current, const double &rate, const double &months);
+    void setFuture(const double &current);
+    void setRate(const double &rate);
+    void setMonths(const double &months);
 
 private:
 

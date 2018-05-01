@@ -12,19 +12,15 @@
 #include <cmath>
 #include "functions.h"
 
-/**
- * TODO: Create function prototypes for any functions you'll implement below
- * main that you'll call from main.
- */
 enum class MainMenuItem{PRESENT_OPTION = 1, FUTURE_OPTION = 2, QUIT = 3};
 enum class PresentMenuItem{FUTURE_VALUE = 1, INTEREST_RATE = 2, NUMBER_YEARS = 3,
-    CALCULATE_VALUE = 4, RETURN = 5, QUIT = 6};
-enum class FutureMenuItem{PRESENT_VALUE = 1, INTEREST_RATE = 2, NUMBER_YEARS = 3,
-    CALCULATE_VALUE = 4, RETURN = 5, QUIT = 6};
-enum class QuitMenuItem{STAY_OPTION = 1, QUIT = 2};
+    CALCULATE_VALUE = 4, RETURN = 5};
+enum class FutureMenuItem{PRESENT_VALUE = 1, INTEREST_RATE = 2, NUMBER_MONTHS = 3,
+    CALCULATE_VALUE = 4, RETURN = 5};
+enum class QuitMenuItem{QUIT = 1, STAY_OPTION = 2};
 
 MainMenuItem displayMainMenu();
-void displayCurrentSubmenu();
+void displayPresentSubmenu();
 void displayFutureSubmenu();
 void displayQuitSubmenu();
 
@@ -39,39 +35,7 @@ int main()
     do {
         selectedOption = displayMainMenu();
     } while (selectedOption !=MainMenuItem::QUIT);
-    /**
-     * TODO: Implement a menu driven program.
-     *
-     * At the highest level, provide three menu items:
-     * 1. Select this option to experiment with the present value function.
-     * 2. Select this option to experiment with the future value function.
-     * 3. Select this option to end this program.
-     *
-     * If the user selects option 1 of the high-level menu, then present
-     * a secondary menu that has five menu items:
-     * 1. Select this option to enter the future value
-     * 2. Select this option to enter the annual interest rate
-     * 3. Select this option to enter the number of years
-     * 4. Select this option to calculate and display the present value.
-     * 5. Select this option to go back to the high-level menu
-     *
-     * If the user selects option 2 of the high-level menu, then present a
-     * secondary menu that has five menu items:
-     * 1. Select this option to enter the present value
-     * 2. Select this option to enter the monthly interest rate
-     * 3. Select this option to enter the number of months
-     * 4. Select this option to calculate and display the future value.
-     * 5. Select this option to go back to the high-level menu
-     *
-     * If the user select option 3 of the high-level menu, the ask the user if
-     * they are sure they want to quit.
-     * 1. If the user does not want to quit, the high-level menu is displayed
-     * 2. If the user really does want to quit, the program ends.
-     *
-     * Strive for modularity, i.e., do not have a bloated main function; points
-     * will be deducted if you don't make use
-     * of a modular approach.
-     */
+
     return EXIT_SUCCESS;
 }
 
@@ -85,7 +49,7 @@ MainMenuItem displayMainMenu(){
 
     switch (selection) {
         case static_cast<unsigned short>(MainMenuItem::PRESENT_OPTION):
-            displayCurrentSubmenu();
+            displayPresentSubmenu();
             break;
         case static_cast<unsigned short>(MainMenuItem::FUTURE_OPTION):
             displayFutureSubmenu();
@@ -99,8 +63,8 @@ MainMenuItem displayMainMenu(){
 
 void displayQuitSubmenu() {
     std::cout << "Are you sure you want to quit?\n";
-    std::cout << "1. yes ";
-    std::cout << "2. no ";
+    std::cout << "1. yes\n";
+    std::cout << "2. no\n\n";
 
     unsigned short quitSelection;
     std::cin >> quitSelection;
@@ -114,14 +78,116 @@ void displayQuitSubmenu() {
     }
 }
 
-presentValue::presentValue(double future, double rate, double years) {
-    setFunction(future, rate, years);
+void displayPresentSubmenu() {
+
+    unsigned short selection{0};
+    presentValue val{};
+    double future{};
+    double rate{};
+    double years{};
+
+    PresentMenuItem menuItem;
+    do {
+        std::cout << "1. Select this option to enter the future value\n";
+        std::cout << "2. Select this option to enter the annual interest rate\n";
+        std::cout << "3. Select this option to enter the number of years\n";
+        std::cout << "4. Select this option to calculate and display the needed value\n";
+        std::cout << "5. Select this option to return to the main menu\n\n";
+        std::cin >> selection;
+        menuItem = static_cast<PresentMenuItem>(selection);
+
+        switch (menuItem) {
+            case PresentMenuItem::FUTURE_VALUE:
+                std::cout << "What is the desired amount in the future?\n";
+                std::cin >> future;
+                val.setFuture(future);
+                break;
+            case PresentMenuItem::INTEREST_RATE:
+                std::cout << "What is your interest rate?\n";
+                std::cin >> rate;
+                val.setRate(rate);
+                break;
+            case PresentMenuItem::NUMBER_YEARS:
+                std::cout << "How long will it take?\n";
+                std::cin >> years;
+                val.setYears(years);
+                break;
+            case PresentMenuItem::CALCULATE_VALUE:
+                std::cout << "\nYou would need to deposit "
+                          << val.P()
+                          << " dollars rignt now to achieve that.\n";
+                break;
+            case PresentMenuItem::RETURN:
+                break;
+        }
+
+    } while (menuItem!=PresentMenuItem::RETURN);
+
 }
 
-void presentValue::setFunction(const double &future, const double &rate, const double &years)
+void displayFutureSubmenu() {
+    unsigned short selection{0};
+    futureValue val{};
+    double future{};
+    double rate{};
+    double months{};
+
+    FutureMenuItem menuItem;
+    do {
+        std::cout << "1. Select this option to enter the present value.\n";
+        std::cout << "2. Select this option to enter the monthly interest rate.\n";
+        std::cout << "3. Select this option to enter the number of months.\n";
+        std::cout << "4. Select this option to calculate and display the future value\n";
+        std::cout << "5. Select this option to return to the main menu.\n";
+        std::cin >> selection;
+        menuItem = static_cast<FutureMenuItem>(selection);
+
+        switch (menuItem) {
+            case FutureMenuItem::PRESENT_VALUE:
+                std::cout << "How much is currently stored?\n";
+                std::cin >> future;
+                val.setFuture(future);
+                break;
+            case FutureMenuItem::INTEREST_RATE:
+                std::cout << "What is your interest rate?\n";
+                std::cin >> rate;
+                val.setRate(rate);
+                break;
+            case FutureMenuItem::NUMBER_MONTHS:
+                std::cout << "How far do you want to check?\n";
+                std::cin >> months;
+                val.setMonths(months);
+                break;
+            case FutureMenuItem::CALCULATE_VALUE:
+                std::cout << "\nYou will have "
+                          << val.F()
+                          << " dollars in "
+                             << months
+                          << " months.\n";
+                break;
+            case FutureMenuItem::RETURN:
+                break;
+        }
+
+    } while (menuItem!=FutureMenuItem::RETURN);
+}
+
+presentValue::presentValue(double future, double rate, double years) {
+    setFuture(future);
+    setRate(rate);
+    setYears(years);
+}
+
+void presentValue::setFuture(const double &future)
 {
     F = future;
+}
+
+void presentValue::setRate(const double &rate) {
     r = rate;
+}
+
+void presentValue::setYears(const double &years) {
     n = years;
 }
 
@@ -131,13 +197,21 @@ double presentValue::P() const
 }
 
 futureValue::futureValue(double current, double rate, double months) {
-    setFunction(current, rate, months);
+    setFuture(current);
+    setRate(rate);
+    setMonths(months);
 }
 
-void futureValue::setFunction(const double &current, const double &rate, const double &months)
+void futureValue::setFuture(const double &current)
 {
     P = current;
+}
+
+void futureValue::setRate(const double &rate) {
     i = rate;
+}
+
+void futureValue::setMonths(const double &months) {
     t = months;
 }
 
@@ -145,10 +219,3 @@ double futureValue::F() const
 {
     return P * pow(1+i,t);
 }
-
-/**
- * TODO: Implement any helper functions specified in your forward declarations
- * that precede the main function here.
- * Erase this multi-line comment when you have finished implementing your helper
- * functions.
- */
